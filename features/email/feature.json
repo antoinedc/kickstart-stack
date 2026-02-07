@@ -1,0 +1,39 @@
+{
+  "name": "email",
+  "description": "Transactional email sending via Mailjet",
+  "dependencies": {
+    "apps/api": {
+      "add": ["node-mailjet"]
+    }
+  },
+  "files": {
+    "copy": {
+      "api/src/services/email.ts": "apps/api/src/services/email.ts"
+    }
+  },
+  "patches": [
+    {
+      "file": ".env.example",
+      "description": "Add MAILJET_API_KEY, MAILJET_SECRET_KEY, MAILJET_SENDER_EMAIL, APP_BASE_URL"
+    }
+  ],
+  "envVars": {
+    "MAILJET_API_KEY": {
+      "description": "Mailjet API key",
+      "example": "your-mailjet-api-key"
+    },
+    "MAILJET_SECRET_KEY": {
+      "description": "Mailjet secret key",
+      "example": "your-mailjet-secret-key"
+    },
+    "MAILJET_SENDER_EMAIL": {
+      "description": "Sender email address (must be verified in Mailjet)",
+      "example": "noreply@yourdomain.com"
+    },
+    "APP_BASE_URL": {
+      "description": "Base URL for links in emails",
+      "example": "https://yourdomain.com"
+    }
+  },
+  "claudeMd": "claude.md"
+}

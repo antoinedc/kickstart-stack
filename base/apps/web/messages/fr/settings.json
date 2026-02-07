@@ -1,0 +1,11 @@
+{
+  "title": "Paramètres",
+  "organization": {
+    "title": "Organisation",
+    "name": "Nom de l'organisation"
+  },
+  "language": {
+    "title": "Langue",
+    "description": "Choisissez votre langue préférée"
+  }
+}

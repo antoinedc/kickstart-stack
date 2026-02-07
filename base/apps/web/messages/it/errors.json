@@ -1,0 +1,6 @@
+{
+  "VALIDATION_ERROR": "Input non valido",
+  "INTERNAL_ERROR": "Si è verificato un errore imprevisto. Riprova",
+  "NOT_FOUND": "Non trovato",
+  "generic": "Qualcosa è andato storto. Riprova"
+}

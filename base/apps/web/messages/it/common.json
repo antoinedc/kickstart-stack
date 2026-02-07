@@ -1,0 +1,39 @@
+{
+  "appName": "{{PROJECT_NAME}}",
+  "loading": "Caricamento...",
+  "save": "Salva",
+  "saving": "Salvataggio...",
+  "cancel": "Annulla",
+  "delete": "Elimina",
+  "confirm": "Conferma",
+  "close": "Chiudi",
+  "back": "Indietro",
+  "next": "Avanti",
+  "search": "Cerca",
+  "getStarted": "Inizia",
+  "selectLanguage": "Seleziona la lingua",
+  "tryAgain": "Riprova",
+  "errors": {
+    "generic": "Qualcosa è andato storto. Riprova.",
+    "network": "Errore di rete. Controlla la tua connessione.",
+    "notFound": "Non trovato",
+    "unauthorized": "Accedi per continuare",
+    "forbidden": "Non hai i permessi per accedere a questa risorsa"
+  },
+  "notFoundPage": {
+    "title": "Pagina non trovata",
+    "goHome": "Torna alla home"
+  },
+  "empty": {
+    "noResults": "Nessun risultato",
+    "noData": "Nessun dato disponibile"
+  },
+  "theme": {
+    "switchToLight": "Passa alla modalità chiara",
+    "switchToDark": "Passa alla modalità scura"
+  },
+  "accessibility": {
+    "toggleMenu": "Apri/chiudi menu",
+    "changeLanguage": "Cambia lingua"
+  }
+}

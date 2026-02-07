@@ -1,0 +1,43 @@
+{
+  "name": "upload",
+  "description": "File upload and storage via S3-compatible object storage",
+  "dependencies": {
+    "apps/api": {
+      "add": ["@aws-sdk/client-s3", "@aws-sdk/s3-request-presigner", "@fastify/multipart"]
+    }
+  },
+  "files": {
+    "copy": {
+      "api/src/services/s3.ts": "apps/api/src/services/s3.ts"
+    }
+  },
+  "patches": [
+    {
+      "file": "apps/api/src/server.ts",
+      "description": "Import and register @fastify/multipart plugin with limits: { fileSize: 100 * 1024 * 1024 }"
+    },
+    {
+      "file": ".env.example",
+      "description": "Add AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, S3_BUCKET"
+    }
+  ],
+  "envVars": {
+    "AWS_ACCESS_KEY_ID": {
+      "description": "AWS access key for S3",
+      "example": "your-access-key"
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "description": "AWS secret key for S3",
+      "example": "your-secret-key"
+    },
+    "AWS_REGION": {
+      "description": "AWS region",
+      "example": "us-east-1"
+    },
+    "S3_BUCKET": {
+      "description": "S3 bucket name for file storage",
+      "example": "my-project-uploads"
+    }
+  },
+  "claudeMd": "claude.md"
+}

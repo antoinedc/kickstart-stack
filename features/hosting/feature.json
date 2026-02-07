@@ -1,0 +1,33 @@
+{
+  "name": "hosting",
+  "description": "Production deployment to a VPS with Docker, Caddy SSL, and deploy script",
+  "dependencies": {},
+  "files": {
+    "copy": {
+      "scripts/deploy.sh": "scripts/deploy.sh",
+      "Caddyfile.prod": "Caddyfile.prod",
+      "docker-compose.prod.yml": "docker-compose.prod.yml"
+    }
+  },
+  "patches": [
+    {
+      "file": "CLAUDE.md",
+      "description": "Add Production Deployment section with server IP ({{SERVER_IP}}), domain ({{DOMAIN}}), deploy commands"
+    },
+    {
+      "file": ".env.example",
+      "description": "Add SERVER_IP and DOMAIN comments/variables"
+    }
+  ],
+  "envVars": {
+    "SERVER_IP": {
+      "description": "Production server IP address",
+      "example": "1.2.3.4"
+    },
+    "DOMAIN": {
+      "description": "Production domain name",
+      "example": "myapp.example.com"
+    }
+  },
+  "claudeMd": "claude.md"
+}

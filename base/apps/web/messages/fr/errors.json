@@ -1,0 +1,6 @@
+{
+  "VALIDATION_ERROR": "Entrée invalide",
+  "INTERNAL_ERROR": "Une erreur inattendue est survenue. Veuillez réessayer",
+  "NOT_FOUND": "Non trouvé",
+  "generic": "Une erreur est survenue. Veuillez réessayer"
+}

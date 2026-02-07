@@ -1,0 +1,11 @@
+{
+  "title": "Impostazioni",
+  "organization": {
+    "title": "Organizzazione",
+    "name": "Nome dell'organizzazione"
+  },
+  "language": {
+    "title": "Lingua",
+    "description": "Scegli la tua lingua preferita"
+  }
+}

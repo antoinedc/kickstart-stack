@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "repo": "antoinedc/kickstart-stack",
+  "features": [
+    {
+      "name": "auth",
+      "description": "JWT email/password authentication with login/signup pages",
+      "recommended": true
+    },
+    {
+      "name": "darkmode",
+      "description": "Dark mode support with system preference detection and manual toggle"
+    },
+    {
+      "name": "jobs",
+      "description": "Background job processing with Redis and BullMQ queues"
+    },
+    {
+      "name": "email",
+      "description": "Transactional email sending via Mailjet"
+    },
+    {
+      "name": "upload",
+      "description": "File upload and storage via S3-compatible object storage"
+    },
+    {
+      "name": "hosting",
+      "description": "Production deployment to a VPS with Docker, Caddy SSL, and deploy script"
+    }
+  ],
+  "variables": {
+    "PROJECT_NAME": "kebab-case project name (e.g., my-saas-app)",
+    "PROJECT_DESCRIPTION": "Short description of the project",
+    "DOMAIN": "Production domain (only if hosting feature selected)",
+    "SERVER_IP": "Production server IP (only if hosting feature selected)"
+  }
+}

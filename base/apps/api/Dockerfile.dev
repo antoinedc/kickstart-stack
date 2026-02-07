@@ -1,0 +1,39 @@
+FROM node:20-alpine
+
+# Install OpenSSL for Prisma
+RUN apk add --no-cache openssl
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+
+WORKDIR /app
+
+# Copy workspace files
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY turbo.json ./
+
+# Copy package.json files for all workspaces
+COPY apps/api/package.json ./apps/api/
+COPY packages/shared/package.json ./packages/shared/
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Copy source code (will be overwritten by volume mounts for hot reload)
+COPY packages/shared ./packages/shared
+COPY apps/api ./apps/api
+
+# Generate Prisma client
+WORKDIR /app/apps/api
+RUN npx prisma generate
+
+# Build shared package
+WORKDIR /app
+RUN pnpm --filter @{{PROJECT_NAME}}/shared build
+
+WORKDIR /app/apps/api
+
+EXPOSE 6001
+
+# Run with tsx watch for hot reload (command overridden in docker-compose.dev.yml)
+CMD ["npx", "tsx", "watch", "src/server.ts"]

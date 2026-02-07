@@ -1,0 +1,51 @@
+{{DOMAIN}} {
+	# Marketing pages
+	@marketing {
+		path /
+		path /en
+		path /en/*
+		path /fr
+		path /fr/*
+		path /it
+		path /it/*
+	}
+	handle @marketing {
+		reverse_proxy web:3000
+	}
+
+	# App routes
+	@app {
+		path /app
+		path /app/*
+	}
+	handle @app {
+		reverse_proxy web:3000
+	}
+
+	# Auth routes
+	@auth {
+		path /login
+		path /signup
+	}
+	handle @auth {
+		reverse_proxy web:3000
+	}
+
+	# API routes
+	handle /api/* {
+		reverse_proxy api:6001
+	}
+
+	# WebSocket routes
+	@websocket {
+		path /ws/*
+	}
+	handle @websocket {
+		reverse_proxy api:6001
+	}
+
+	# Catch-all for Next.js assets
+	handle {
+		reverse_proxy web:3000
+	}
+}

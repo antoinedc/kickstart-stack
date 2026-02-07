@@ -1,0 +1,26 @@
+{
+  "name": "darkmode",
+  "description": "Dark mode support with system preference detection and manual toggle",
+  "dependencies": {
+    "apps/web": {
+      "add": ["next-themes"]
+    }
+  },
+  "files": {
+    "copy": {
+      "web/src/components/shared/ThemeProvider.tsx": "apps/web/src/components/shared/ThemeProvider.tsx"
+    }
+  },
+  "patches": [
+    {
+      "file": "apps/web/src/app/(app)/AppLayoutClient.tsx",
+      "description": "Wrap content with <ThemeProvider> component. Import from @/components/shared/ThemeProvider"
+    },
+    {
+      "file": "apps/web/src/app/(app)/layout.tsx",
+      "description": "Add suppressHydrationWarning to <html> tag (required for next-themes)"
+    }
+  ],
+  "envVars": {},
+  "claudeMd": "claude.md"
+}

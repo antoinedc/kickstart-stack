@@ -1,0 +1,57 @@
+# Development configuration (HTTP only)
+{
+	auto_https off
+}
+
+:80 {
+	# Marketing pages (homepage and static marketing routes)
+	# Include locale prefixes (/fr, /it) for internationalization
+	@marketing {
+		path /
+		path /en
+		path /en/*
+		path /fr
+		path /fr/*
+		path /it
+		path /it/*
+	}
+	handle @marketing {
+		reverse_proxy web:3000
+	}
+
+	# App routes (dashboard - requires authentication)
+	@app {
+		path /app
+		path /app/*
+	}
+	handle @app {
+		reverse_proxy web:3000
+	}
+
+	# Auth routes
+	@auth {
+		path /login
+		path /signup
+	}
+	handle @auth {
+		reverse_proxy web:3000
+	}
+
+	# API routes (REST)
+	handle /api/* {
+		reverse_proxy api:6001
+	}
+
+	# WebSocket routes
+	@websocket {
+		path /ws/*
+	}
+	handle @websocket {
+		reverse_proxy api:6001
+	}
+
+	# Next.js static assets and catch-all (for _next/*, favicon, etc.)
+	handle {
+		reverse_proxy web:3000
+	}
+}

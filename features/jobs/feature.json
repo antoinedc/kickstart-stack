@@ -1,0 +1,40 @@
+{
+  "name": "jobs",
+  "description": "Background job processing with Redis and BullMQ queues",
+  "dependencies": {
+    "apps/api": {
+      "add": ["bullmq", "ioredis"]
+    }
+  },
+  "files": {
+    "copy": {
+      "api/src/services/redis.ts": "apps/api/src/services/redis.ts",
+      "api/src/services/queue.ts": "apps/api/src/services/queue.ts"
+    }
+  },
+  "patches": [
+    {
+      "file": "docker-compose.yml",
+      "description": "Add redis service (redis:7-alpine, port 6379, healthcheck, volume). Add REDIS_URL=redis://redis:6379 to api environment. Add depends_on redis condition service_healthy to api."
+    },
+    {
+      "file": "docker-compose.dev.yml",
+      "description": "No changes needed — redis inherits from base compose"
+    },
+    {
+      "file": ".env.example",
+      "description": "Add REDIS_URL=redis://redis:6379"
+    },
+    {
+      "file": "apps/api/src/server.ts",
+      "description": "Import closeQueue from ./services/queue.js. Add await closeQueue() in the shutdown handler."
+    }
+  ],
+  "envVars": {
+    "REDIS_URL": {
+      "description": "Redis connection URL",
+      "example": "redis://redis:6379"
+    }
+  },
+  "claudeMd": "claude.md"
+}

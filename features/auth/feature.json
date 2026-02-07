@@ -1,0 +1,57 @@
+{
+  "name": "auth",
+  "description": "JWT email/password authentication with login/signup pages",
+  "dependencies": {
+    "apps/api": {
+      "add": ["@node-rs/argon2", "jose"]
+    },
+    "apps/web": {
+      "add": ["zustand"]
+    }
+  },
+  "files": {
+    "copy": {
+      "api/src/plugins/auth.ts": "apps/api/src/plugins/auth.ts",
+      "api/src/routes/auth.ts": "apps/api/src/routes/auth.ts",
+      "api/src/services/auth.ts": "apps/api/src/services/auth.ts",
+      "web/src/app/(auth)/": "apps/web/src/app/(auth)/",
+      "web/src/components/auth/": "apps/web/src/components/auth/",
+      "web/src/hooks/useAuth.ts": "apps/web/src/hooks/useAuth.ts",
+      "web/src/stores/auth-store.ts": "apps/web/src/stores/auth-store.ts",
+      "messages/": "apps/web/messages/"
+    }
+  },
+  "patches": [
+    {
+      "file": "apps/api/src/server.ts",
+      "description": "Import and register auth plugin (fastify.register(authPlugin)), import and register auth routes (fastify.register(authRoutes, { prefix: '/api/auth' }))"
+    },
+    {
+      "file": "apps/web/src/app/(app)/AppLayoutClient.tsx",
+      "description": "Import useAuthStore and useAuth. Add auth check: if !isLoading && !isAuthenticated, redirect to /login. Show loading spinner while isLoading. Return null if !isAuthenticated."
+    },
+    {
+      "file": "apps/api/prisma/schema.prisma",
+      "description": "Add User model with fields: id (uuid), email (unique), passwordHash, name (optional), role (UserRole enum: ADMIN/MEMBER), locale (default 'en'), organizationId (relation to Organization), createdAt, updatedAt. Add users relation to Organization model."
+    },
+    {
+      "file": "apps/web/src/app/(app)/layout.tsx",
+      "description": "No changes needed for auth"
+    },
+    {
+      "file": "Caddyfile",
+      "description": "Add /login and /signup to the @auth path matcher if not already present"
+    },
+    {
+      "file": "packages/shared/src/errors.ts",
+      "description": "Add auth error codes: AUTH_INVALID_CREDENTIALS, AUTH_USER_EXISTS, AUTH_USER_NOT_FOUND, AUTH_MISSING_TOKEN, AUTH_INVALID_TOKEN, AUTH_ADMIN_REQUIRED, AUTH_WRONG_PASSWORD. Add them to ErrorCode union type."
+    }
+  ],
+  "envVars": {
+    "JWT_SECRET": {
+      "description": "Secret for JWT signing",
+      "example": "change-me-to-random-string"
+    }
+  },
+  "claudeMd": "claude.md"
+}

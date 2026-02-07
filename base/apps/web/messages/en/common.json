@@ -1,0 +1,39 @@
+{
+  "appName": "{{PROJECT_NAME}}",
+  "loading": "Loading...",
+  "save": "Save",
+  "saving": "Saving...",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "confirm": "Confirm",
+  "close": "Close",
+  "back": "Back",
+  "next": "Next",
+  "search": "Search",
+  "getStarted": "Get started",
+  "selectLanguage": "Select language",
+  "tryAgain": "Try again",
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "notFound": "Not found",
+    "unauthorized": "Please log in to continue",
+    "forbidden": "You don't have permission to access this"
+  },
+  "notFoundPage": {
+    "title": "Page not found",
+    "goHome": "Go home"
+  },
+  "empty": {
+    "noResults": "No results found",
+    "noData": "No data available"
+  },
+  "theme": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "accessibility": {
+    "toggleMenu": "Toggle menu",
+    "changeLanguage": "Change language"
+  }
+}
